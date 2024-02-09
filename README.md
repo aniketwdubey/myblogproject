@@ -35,17 +35,45 @@ The project structure is as follows:
     git clone https://github.com/yourusername/myblogproject.git
     ```
 
-2. Install dependencies:
+2. Navigate to the project directory:
+
+    ```bash
+    cd myblogproject
+    ```
+
+3. Create a virtual environment:
+
+    ```bash
+    python -m venv venv
+    ```
+
+4. Activate the virtual environment:
+
+    - On Windows:
+
+        ```bash
+        venv\Scripts\activate
+        ```
+
+    - On macOS and Linux:
+
+        ```bash
+        source venv/bin/activate
+        ```
+
+5. Install dependencies:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Apply migrations:
+6. Apply migrations:
 
     ```bash
+    python manage.py makemigrations
     python manage.py migrate
     ```
+
 
 ## Usage
 
