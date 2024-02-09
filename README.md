@@ -89,32 +89,6 @@ The project structure is as follows:
 
 https://aniketdubey.hashnode.dev/building-a-simple-blogging-graphql-api-with-django-and-strawberry
 
-▪︎ query posts
-
-▪︎ create post
-
-▪︎ create another post
-
-▪︎ query all posts
-
-▪︎ update post with postId:13
-
-▪︎ query all posts again
-
-As you can see the title for post with postId:13 is updated.
-
-▪︎ You can query a post using postId as well!
-
-▪︎ Let's add a comment on post with postId:13
-
-▪︎ Let's add another comment on post with postId:13
-
-▪︎ query all posts
-
-You can see 2 comment on post with postId:13
-
-▪︎ You can update, delete the comments as well!
-
 ## Contributing
 
 Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
