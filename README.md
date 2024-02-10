@@ -2,6 +2,8 @@
 
 MyBlogProject is a simple Django-based blogging GraphQL API developed using the Strawberry framework. It focuses on providing basic functionalities for a blogging platform, including creating posts and adding comments.
 
+![DJANGO + STRAWBERY (1)](https://github.com/aniketwdubey/myblogproject/assets/58386130/1ef8568e-9b6d-409f-b4a0-8dcd61b48994)
+
 ## Table of Contents
 
 - [Project Structure](#project-structure)
