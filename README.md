@@ -46,7 +46,7 @@ The project structure is as follows:
 3. Create a virtual environment:
 
     ```bash
-    python -m venv
+    python -m venv venv
     ```
 
 4. Activate the virtual environment:
