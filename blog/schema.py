@@ -1,5 +1,7 @@
 import strawberry
 from typing import List
+
+from sympy import Q
 from .types import PostType, CommentType
 from .models import Post, Comment
 
@@ -22,6 +24,14 @@ class Query:
     #         return Comment.objects.filter(author=author)
     #     else:
     #         return Comment.objects.all()
+    
+    
+    @strawberry.field
+    def paginated_posts(self, first: int, after: str = None) -> List[PostType]:
+        queryset = Post.objects.order_by('post_id')
+        if after:
+            queryset = queryset.filter(post_id__gt=after)
+        return queryset[:first]
         
 @strawberry.type
 class Mutation:

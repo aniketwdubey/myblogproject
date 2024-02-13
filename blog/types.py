@@ -20,3 +20,4 @@ class CommentType:
     post:PostType
     content: str
     author: str
+
