@@ -1,9 +1,10 @@
 import strawberry
 from typing import List
 
-from sympy import Q
-from .types import PostType, CommentType
-from .models import Post, Comment
+from django.contrib.contenttypes.models import ContentType
+
+from .types import PostType, CommentType, VoteType
+from .models import Post, Comment, Vote
 
 @strawberry.type
 class Query:
@@ -13,17 +14,25 @@ class Query:
             return Post.objects.filter(author=author)
     
         return Post.objects.all()
-
+    
     @strawberry.field
     def post(self, post_id: int) -> PostType:
         return Post.objects.get(post_id=post_id)
     
-    # @strawberry.field
-    # def comments(self, author: str = None) -> List[CommentType]:
-    #     if author:
-    #         return Comment.objects.filter(author=author)
-    #     else:
-    #         return Comment.objects.all()
+    @strawberry.field
+    def comments(self, author: str = None) -> List[CommentType]:
+        if author:
+            return Comment.objects.filter(author=author)
+        else:
+            return Comment.objects.all()
+        
+    @strawberry.field
+    def votes(self) -> List[VoteType]:
+        return Vote.objects.all()
+    
+    @strawberry.field
+    def vote(self, vote_id: int) -> VoteType:
+        return Vote.objects.get(vote_id=vote_id)
         
 @strawberry.type
 class Mutation:
@@ -62,16 +71,27 @@ class Mutation:
         comment.author = author
         comment.save()
         return comment
-
+    
     @strawberry.field
-    def delete_comment(self, comment_id: int) -> bool:
-        comment = Comment.objects.get(comment_id=comment_id)
-        comment.delete()
+    def create_vote(self, vote_type: int, content_type: str, object_id: int, voter: str) -> VoteType:
+        content_type = ContentType.objects.get(model=content_type)
+        vote = Vote(content_type=content_type, object_id=object_id, vote_type=vote_type, voter=voter)
+        vote.save()
+        return vote
+    
+    @strawberry.field
+    def update_vote(self, vote_id:int, vote_type: str) -> VoteType:
+        vote = Vote.objects.get(vote_id=vote_id)
+        vote_type = vote_type
+        vote.save()
+        return vote
+    
+    @strawberry.field
+    def delete_vote(self, vote_id: int) -> bool:
+        vote = Vote.objects.get(vote_id=vote_id)
+        vote.delete()
         return True
 
 schema = strawberry.Schema(query=Query, mutation=Mutation)
-
-
-
 
 
