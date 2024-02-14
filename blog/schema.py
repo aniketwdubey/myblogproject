@@ -11,8 +11,8 @@ class Query:
     def posts(self, author: str = None) -> List[PostType]:
         if author:
             return Post.objects.filter(author=author)
-        else:
-            return Post.objects.all()
+    
+        return Post.objects.all()
 
     @strawberry.field
     def post(self, post_id: int) -> PostType:
@@ -24,14 +24,6 @@ class Query:
     #         return Comment.objects.filter(author=author)
     #     else:
     #         return Comment.objects.all()
-    
-    
-    @strawberry.field
-    def paginated_posts(self, first: int, after: str = None) -> List[PostType]:
-        queryset = Post.objects.order_by('post_id')
-        if after:
-            queryset = queryset.filter(post_id__gt=after)
-        return queryset[:first]
         
 @strawberry.type
 class Mutation:

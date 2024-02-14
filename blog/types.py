@@ -1,8 +1,12 @@
 import strawberry
 from .models import Post, Comment
+
+
+from .models import Post, Comment
 from typing import List
 
-@strawberry.type
+# @strawberry.type
+@strawberry.django.type(Post)
 class PostType:
     post_id: int
     title: str
@@ -14,7 +18,8 @@ class PostType:
     def comments(self) -> List['CommentType']:
         return Comment.objects.filter(post_id=self.post_id)
     
-@strawberry.type
+# @strawberry.type
+@strawberry.django.type(Comment)
 class CommentType:
     comment_id: int
     post:PostType
