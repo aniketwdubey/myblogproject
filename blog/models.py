@@ -14,7 +14,6 @@ class Vote(models.Model):
 
     vote_id = models.AutoField(primary_key=True)
     vote_type = models.IntegerField(choices=VOTE_CHOICES)
-
     voter = models.CharField(max_length=100)
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
