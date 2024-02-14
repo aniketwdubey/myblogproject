@@ -13,7 +13,6 @@ class Vote(models.Model):
     )
 
     vote_id = models.AutoField(primary_key=True)
-    # vote_type = models.CharField(max_length=1, choices=VOTE_CHOICES)
     vote_type = models.IntegerField(choices=VOTE_CHOICES)
 
     voter = models.CharField(max_length=100)
